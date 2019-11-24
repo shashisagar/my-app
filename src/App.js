@@ -1,94 +1,68 @@
-import React from "react";
+import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RegisterComponent from "./component/registerComponent";
-import LoginComponent from "./component/loginComponent";
-import HomeComponent from "./component/homeComponent";
+import {Button, Form} from "react-bootstrap";
 
 
+class App extends React.Component {
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     alert("kkkkk");
+    // },
 
-// This site has 3 pages, all of which are rendered
-// dynamically in the browser (not server rendered).
-//
-// Although the page does not ever refresh, notice how
-// React Router keeps the URL up to date as you navigate
-// through the site. This preserves the browser history,
-// making sure things like the back button and bookmarks
-// work properly.
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: "",
+            password: "",
+        }
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+       // this.onChangePassword=this.onChangePassword.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
-function App() {
-    return (
-        <Router>
-            <div>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/login">Login</Link>
-                    </li>
-                    <li>
-                        <Link to="/register">Registration</Link>
-                    </li>
-                </ul>
+    onChangeEmail=(e)=>{
+        alert(e.target.value);
+        this.setState({value: e.target.value});
 
-                <hr />
+    }
 
-                {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
-                <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route path="/register">
-                        <Registration />
-                    </Route>
-                </Switch>
-            </div>
-        </Router>
-    );
+    // onChangePassword=(e)=>{
+    //    this.setState({value:e.target.value.password});
+    // }
+
+
+    handleClick= (e) => {
+       e.preventDefault();
+        alert(this.state.email);
+        alert(this.state.password);
+    }
+
+    render() {
+        return (<Form>
+            <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmail} placeholder="Enter email"/>
+                <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                </Form.Text>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" value={this.state.password} onChange={this.onChangePassword} placeholder="Password"/>
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Check me out"/>
+            </Form.Group>
+            <Button variant="primary" type="submit" onClick={this.handleClick}>
+                Submit
+            </Button>
+        </Form>);
+    }
 }
 
-// You can think of these components as "pages"
-// in your app.
+export default App
 
-function Home() {
-    return (
-        <div>
-            <h2><HomeComponent /></h2>
-        </div>
-    );
-}
 
-function Login() {
 
-            return (
-            <div>
-                <h2><LoginComponent /></h2>
-            </div>
-            )
-}
-
-function Registration() {
-    return (
-        <div>
-            <RegisterComponent />
-        </div>
-    );
-}
-
-export default App;

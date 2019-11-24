@@ -1,10 +1,13 @@
+
 import React from "react";
 import {Button, Form} from "react-bootstrap";
 
 
 
 function loginComponent(){
-        return (
+
+
+    return (
             <Form>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -27,4 +30,8 @@ function loginComponent(){
             </Form>
         )
 }
+
+
+
+
 export default loginComponent;
