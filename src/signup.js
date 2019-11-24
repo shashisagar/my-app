@@ -3,16 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Form} from "react-bootstrap";
 
 
-class App extends React.Component {
-
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     alert("kkkkk");
-    // },
+class Signup extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
+            name:"",
             email: "",
             password: "",
         }
@@ -32,17 +28,25 @@ class App extends React.Component {
         console.log("there");
         this.setState({password:e.target.value});
     }
-
-
+    onChangeName=(e)=>{
+        console.log("there");
+        this.setState({name:e.target.value});
+    }
     handleClick= (e) => {
        e.preventDefault();
-       //ert("here");
-      // alert(this.state.email);
+       alert(this.state.email);
+       alert(this.state.password);
+       alert(this.state.name);
       
     }
 
     render() {
         return (<Form>
+            <Form.Group controlId="formBasicName">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control type="text" onChange={this.onChangeName} placeholder="Enter name"/>
+            </Form.Group>
+
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" onChange={this.onChangeEmail} placeholder="Enter email"/>
@@ -59,13 +63,13 @@ class App extends React.Component {
                 <Form.Check type="checkbox" label="Check me out"/>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={this.handleClick}>
-                Submit
+                Signup
             </Button>
         </Form>);
     }
 }
 
-export default App
+export default Signup
 
 
 
